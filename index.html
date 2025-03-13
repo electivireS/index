@@ -1,153 +1,97 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редактор index.html</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
-            transition: background 0.4s, color 0.4s;
-            background-color: #ffffff;
-            color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
+            font-family: 'Poppins', 'Montserrat';
+               display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+            transition: .3s;
         }
-
-        .dark-theme {
-            background-color: #121212;
-            color: #fff;
-        }
-
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            width: 450px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
             text-align: center;
-            transition: background 0.4s, color 0.4s;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-
-        .dark-theme .container {
-            background: #1e1e1e;
-            color: #fff;
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
-        }
-
         h2 {
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 22px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
-
         input, textarea {
-            width: calc(100% - 20px);
-            margin: 12px 0;
-            padding: 14px;
+            width: 100%;
+            padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 12px;
+            border-radius: 10px;
+            box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
             font-size: 16px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        textarea {
             resize: none;
-            background: #fff;
-            color: #000;
-            transition: background 0.3s, color 0.3s;
         }
-
-        .dark-theme input, 
-        .dark-theme textarea {
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
+        input[type="file"] {
+            padding: 10px;
+            background: white;
         }
-
         button {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             border: none;
-            border-radius: 12px;
+            border-radius: 15px;
             color: #fff;
-            background: linear-gradient(177.44deg,#1d6da7 5.6%,#013134 97.86%);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
-            font-size: 20px;
+            background: linear-gradient(0deg,rgba(0,0,0,.2),rgba(0,0,0,.2)),linear-gradient(177.44deg,#1d6da7 5.6%,#013134 97.86%);
+            box-shadow: 0 10px 25px #000000b3;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            margin-top: 18px;
-            transition: background 0.3s;
         }
-
-        .dark-theme button {
-            background: linear-gradient(177.44deg,#004e89 5.6%,#001f23 97.86%);
+        button:hover {
+          transform: scale(1.01);
+           transition: .3s;
+             animation: fadeIn 1s;
         }
-
-        /* Стили для переключателя темы */
-        .theme-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 26px;
-            background: #ddd;
-            border-radius: 13px;
-            cursor: pointer;
-            transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            padding: 3px;
+        button:active {
+             transform: scale(.95);
+             transition: .3s;
+             animation: fadeIn 1s;
         }
-
-        .theme-switch::before {
-            content: "";
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            transition: transform 0.3s;
-        }
-
-        .dark-theme .theme-switch {
-            background: #444;
-        }
-
-        .dark-theme .theme-switch::before {
-            transform: translateX(24px);
-            background: yellow;
-        }
-
-        /* Футер */
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .dark-theme footer {
-            color: #aaa;
-        }
+       
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
 
     </style>
 </head>
 <body>
-
-    <!-- Переключатель темной темы -->
-    <div class="theme-switch" onclick="toggleTheme()"></div>
-
-    <!-- Основной контейнер -->
     <div class="container">
         <h2>Редактор index.html</h2>
         <input type="file" id="fileInput">
-        <textarea id="gtagCode" placeholder="Введите новый gtag.js"></textarea>
-        <textarea id="conversionCode" placeholder="Введите новый conversion event"></textarea>
-        <input type="text" id="newUrl" placeholder="Введите новую ссылку для gtag_report_conversion">
+        <textarea id="gtagCode" placeholder="Вставьте 1 часть кода Google"></textarea>
+        <textarea id="conversionCode" placeholder="Вставьте 2 часть кода Google"></textarea>
+        <input type="text" id="newUrl" placeholder="Введите новую ссылку">
         <button onclick="processFile()">Заменить и скачать</button>
     </div>
-
-    <footer>Сделано М77-🦜Никита</footer>
 
     <script>
         function processFile() {
@@ -155,7 +99,7 @@
             const gtagCode = document.getElementById('gtagCode').value.trim();
             const conversionCode = document.getElementById('conversionCode').value.trim();
             const newUrl = document.getElementById('newUrl').value.trim();
-
+            
             if (!fileInput.files.length) {
                 alert('Выберите файл!');
                 return;
@@ -165,43 +109,40 @@
             reader.onload = function(e) {
                 let content = e.target.result;
 
-                // Удаляем старые скрипты Google
+                // Полностью удаляем ВСЕ старые скрипты Google и комментарии к ним
                 content = content.replace(/<!-- Google tag \(gtag\.js\) -->[\s\S]*?<\/script>/gi, '');
                 content = content.replace(/<!-- Event snippet for pixel.*? -->[\s\S]*?<\/script>/gi, '');
+                content = content.replace(/<!-- Event snippet for pixel 1 conversion page[\s\S]*?-->/gi, '');
+                content = content.replace(/<script[^>]*>\s*window\.dataLayer = window\.dataLayer \|\| \[\];[\s\S]*?gtag\('config', 'AW-[^']+'\);\s*<\/script>/gi, '');
                 content = content.replace(/<script>\s*function gtag_report_conversion\(url\).*?<\/script>/gis, '');
                 
-                // Заменяем ссылки в gtag_report_conversion
+                // Заменяем ссылки внутри gtag_report_conversion, включая разорванные строки в JS
                 content = content.replace(/return gtag_report_conversion\(['"]([^'"]+?)(\?[^'"]*?)?['"]\)/g, (match, p1, p2) => {
                     let separator = p2 ? '?' : '';
                     return `return gtag_report_conversion('${newUrl}${separator}${p2 || ''}')`;
                 });
-
-                // Вставляем новые скрипты после <head>
+                
+                // Заменяем ссылки в querySelectorAll (кнопки onclick)
+                content = content.replace(/var newOnClick =\s*"return gtag_report_conversion\('([^']+?)\?([^']+?)'\)"/g, (match, p1, p2) => {
+                    let separator = newUrl.includes('?') ? '&' : '?';
+                    return `var newOnClick = "return gtag_report_conversion('${newUrl}${separator}${p2}')"`;
+                });
+                
+                // Вставляем новые скрипты сразу после <head>
                 content = content.replace(/<head>/i, `<head>\n${gtagCode}\n${conversionCode}`);
-
-                // Скачиваем файл
+                
+                // Создаем новый файл и скачиваем
                 const blob = new Blob([content], { type: 'text/html' });
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = 'index_modified.html';
+                a.download = 'index.html';
                 a.click();
             };
             reader.readAsText(fileInput.files[0]);
         }
-
-        // Переключение темной темы
-        function toggleTheme() {
-            document.body.classList.toggle("dark-theme");
-            localStorage.setItem("theme", document.body.classList.contains("dark-theme") ? "dark" : "light");
-        }
-
-        // Сохраняем тему после обновления
-        (function () {
-            if (localStorage.getItem("theme") === "dark") {
-                document.body.classList.add("dark-theme");
-            }
-        })();
     </script>
-
+    <footer>
+    Сделано М77-🦜Никита
+</footer>
 </body>
 </html>
